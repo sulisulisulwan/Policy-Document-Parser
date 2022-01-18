@@ -1,9 +1,15 @@
 import React from 'react';
-
+import FileUploadForm from './FileUploadForm.jsx';
 
 const App = () => {
   return (
-    <div>React is working</div>
+    <>
+      <header>
+        <h1>Policy Document Parser</h1>
+        <hr></hr>
+      </header>
+      <FileUploadForm/>
+    </>
   )
 }
 
