@@ -27,7 +27,7 @@ const uploadFileToFirebase = (file, setUploadFileProgress) => {
     const progress = Math.round(
       (snapshot.bytesTransferred / snapshot.totalBytes) * 100
     )
-    setUploadFileProgress(progress)
+    setUploadFileProgress(`Uploaded ${progress} %`)
 
   }, 
   (err) => console.log(err),
@@ -40,12 +40,6 @@ const uploadFileToFirebase = (file, setUploadFileProgress) => {
   }
   );
 };
-
-// const sendFile = async(file) => {
-
-
-
-// }
 
 
 export default uploadFileToFirebase;

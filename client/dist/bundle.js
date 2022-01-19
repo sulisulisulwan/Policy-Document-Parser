@@ -5614,63 +5614,75 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var FileUploadForm = function FileUploadForm() {
   var progressBar = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)('Uploaded 0 %'),
       _useState2 = _slicedToArray(_useState, 2),
       uploadFileProgress = _useState2[0],
       setUploadFileProgress = _useState2[1];
 
   var handleSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-      var file, newFormData;
+      var file, newFormData, response;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               progressBar.current.style.display = 'block';
               e.preventDefault();
+
+              if (!(e.target[0].files.length === 0)) {
+                _context.next = 5;
+                break;
+              }
+
+              setUploadFileProgress('Must upload a file!');
+              return _context.abrupt("return");
+
+            case 5:
               file = e.target[0].files[0];
-              _context.prev = 3;
-              _context.next = 6;
+              _context.prev = 6;
+              _context.next = 9;
               return (0,_uploadFileToFirebase_js__WEBPACK_IMPORTED_MODULE_1__["default"])(file, setUploadFileProgress);
 
-            case 6:
-              _context.next = 12;
+            case 9:
+              _context.next = 15;
               break;
 
-            case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](3);
+            case 11:
+              _context.prev = 11;
+              _context.t0 = _context["catch"](6);
               console.error(_context.t0);
               return _context.abrupt("return", _context.t0);
 
-            case 12:
-              _context.prev = 12;
+            case 15:
+              _context.prev = 15;
               newFormData = new FormData();
               newFormData.append('upload-file', file);
-              _context.next = 17;
+              _context.next = 20;
               return fetch('/policy-docs/upload', {
                 method: 'POST',
                 body: newFormData
               });
 
-            case 17:
-              return _context.abrupt("return", _context.sent);
-
             case 20:
-              _context.prev = 20;
-              _context.t1 = _context["catch"](12);
+              response = _context.sent;
+              console.log(response);
+              return _context.abrupt("return");
+
+            case 25:
+              _context.prev = 25;
+              _context.t1 = _context["catch"](15);
               console.error(_context.t1);
               return _context.abrupt("return", _context.t1);
 
-            case 24:
+            case 29:
               ;
 
-            case 25:
+            case 30:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[3, 8], [12, 20]]);
+      }, _callee, null, [[6, 11], [15, 25]]);
     }));
 
     return function handleSubmit(_x) {
@@ -5692,7 +5704,7 @@ var FileUploadForm = function FileUploadForm() {
     style: {
       display: 'none'
     }
-  }, "Uploaded ".concat(uploadFileProgress, " %"))));
+  }, "".concat(uploadFileProgress))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FileUploadForm);
@@ -37737,7 +37749,7 @@ var uploadFileToFirebase = function uploadFileToFirebase(file, setUploadFileProg
     //snapshot contains stream data at the point of state change
     //Calculate the percentage of transfer completion.
     var progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
-    setUploadFileProgress(progress);
+    setUploadFileProgress("Uploaded ".concat(progress, " %"));
   }, function (err) {
     return console.log(err);
   }, function () {
@@ -37747,9 +37759,7 @@ var uploadFileToFirebase = function uploadFileToFirebase(file, setUploadFileProg
       return console.error(err);
     });
   });
-}; // const sendFile = async(file) => {
-// }
-
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (uploadFileToFirebase);
 
