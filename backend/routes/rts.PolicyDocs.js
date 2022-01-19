@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const { uploadToTemp } = require('../middleware/');
 const controllers = require('../controllers');
-const { MachineLearningAPI, SendToDB } = controllers;
-const { sendToAPI } = MachineLearningAPI;
+const { ParsePDFToText, SendToMachineLearningAPI, SendToDB } = controllers;
+const { uploadToTemp } = require('../middleware/');
+const { parsePDFToText } = ParsePDFToText;
+const { sendToMachineLearningAPI } = SendToMachineLearningAPI;
 const { sendToDB } = SendToDB;
 
-router.post('/upload', uploadToTemp, sendToAPI, sendToDB);
+router.post('/upload', uploadToTemp, parsePDFToText, sendToMachineLearningAPI, sendToDB);
 
 module.exports = router;

@@ -1,4 +1,5 @@
 module.exports = {
+  ParsePDFToText: require('./ctrls.ParsePDFToText'),
   SendToDB: require('./ctrls.SendToDB'),
-  MachineLearningAPI: require('./ctrls.MachineLearningAPI')
+  SendToMachineLearningAPI: require('./ctrls.SendToMachineLearningAPI')
 };
