@@ -1,14 +1,10 @@
 const router = require('express').Router();
+const { uploadToTemp } = require('../middleware/');
+const controllers = require('../controllers');
+const { MachineLearningAPI, SendToDB } = controllers;
+const { sendToAPI } = MachineLearningAPI;
+const { sendToDB } = SendToDB;
 
-
-
-router.post('/upload', (req, res) => {
-  
-  //where does this file go first?
-  console.log('file', req.file);
-  res.sendStatus(201);
-})
-
-
+router.post('/upload', uploadToTemp, sendToAPI, sendToDB);
 
 module.exports = router;

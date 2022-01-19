@@ -5551,16 +5551,6 @@ function getModularInstance(service) {
 
 /***/ }),
 
-/***/ "./node_modules/axios/index.js":
-/*!*************************************!*\
-  !*** ./node_modules/axios/index.js ***!
-  \*************************************/
-/***/ (() => {
-
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/sulimantekalli/Desktop/Policy-Document-Parser/client/node_modules/axios/index.js'");
-
-/***/ }),
-
 /***/ "./src/App.jsx":
 /*!*********************!*\
   !*** ./src/App.jsx ***!
@@ -5600,7 +5590,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regenerator_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _uploadFileToFirebase_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./uploadFileToFirebase.js */ "./src/uploadFileToFirebase.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -5622,7 +5611,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var FileUploadForm = function FileUploadForm() {
   var progressBar = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)();
 
@@ -5633,7 +5621,7 @@ var FileUploadForm = function FileUploadForm() {
 
   var handleSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-      var file, body, newFormData;
+      var file, newFormData;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -5656,44 +5644,33 @@ var FileUploadForm = function FileUploadForm() {
               return _context.abrupt("return", _context.t0);
 
             case 12:
-              body = {
-                'upload-file': file
-              };
-              _context.prev = 13;
+              _context.prev = 12;
               newFormData = new FormData();
-              newFormData.append('upload-file', file); // await axios.post('/policy-docs/upload', newFormData, {
-              //   headers: {
-              //     'Content-Type': 'multipart/form-data'
-              //   }
-              // })
-
-              _context.next = 18;
+              newFormData.append('upload-file', file);
+              _context.next = 17;
               return fetch('/policy-docs/upload', {
                 method: 'POST',
-                body: newFormData // headers: {
-                //   "Content-Type": "multipart/form-data"
-                // }
-
+                body: newFormData
               });
 
-            case 18:
+            case 17:
               return _context.abrupt("return", _context.sent);
 
-            case 21:
-              _context.prev = 21;
-              _context.t1 = _context["catch"](13);
+            case 20:
+              _context.prev = 20;
+              _context.t1 = _context["catch"](12);
               console.error(_context.t1);
               return _context.abrupt("return", _context.t1);
 
-            case 25:
+            case 24:
               ;
 
-            case 26:
+            case 25:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[3, 8], [13, 21]]);
+      }, _callee, null, [[3, 8], [12, 20]]);
     }));
 
     return function handleSubmit(_x) {
