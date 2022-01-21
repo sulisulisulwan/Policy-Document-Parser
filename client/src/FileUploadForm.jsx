@@ -18,32 +18,31 @@ const FileUploadForm = () => {
     }
 
     const file = e.target[0].files[0];
-
+    let firebaseURL;
     try {
-      await uploadFileToFirebase(file, setUploadFileProgress);
+      firebaseURL = await uploadFileToFirebase(file, setUploadFileProgress);
     } catch(err) {
       console.error(err);
       return err;
       //  WE NEED TO HANDLE THIS ERROR IN THE UI AS WELL
     }
 
+    let response;
     try {
       const newFormData = new FormData();
       newFormData.append('upload-file', file);
-  
-      const response = await fetch('/policy-docs/upload', {
+      response = await fetch('/policy-docs/upload', {
         method: 'POST',
         body: newFormData
       });
-
-      console.log(response)
-      return;
 
     } catch(err) { 
       console.error(err)
       return err;
     };
 
+    response = await response.json()
+    //make one more call to the server to update the uploaded document with the url firebase url reference
   }
 
 
