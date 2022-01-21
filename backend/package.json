@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@lucidtech/las-sdk-node": "^7.1.1",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
     "jest": "^27.4.7",

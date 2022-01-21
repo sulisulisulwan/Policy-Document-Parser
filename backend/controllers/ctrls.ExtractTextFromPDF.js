@@ -4,14 +4,14 @@ const PDFParser = require('pdf2json');
 const pdfParser = new PDFParser(this, 1);
 
 
-const parsePDFToText = async (req, res, next) => {
+const extractTextFromPDF = async (req, res, next) => {
 
   const { file } = req;
   const { filename } = file;
   const savedTempFile = path.resolve(__dirname, `../tmp/client-uploads/${filename}`);
   const outputTextFilePath = path.resolve(__dirname, `../parsed-files/${filename}.txt`);
   
-  const handleParsedPDFData = async (pdfData) => {
+  const extractTextFromPDF = async (pdfData) => {
 
     try {
       await fs.writeFile(outputTextFilePath, pdfParser.getRawTextContent());
@@ -25,8 +25,8 @@ const parsePDFToText = async (req, res, next) => {
 
   pdfParser.loadPDF(savedTempFile);
   pdfParser.on('pdfParser_dataError', errData => console.error(errData.parserError));
-  pdfParser.on('pdfParser_dataReady', handleParsedPDFData)
+  pdfParser.on('pdfParser_dataReady', extractTextFromPDF)
 
 }
 
-module.exports = { parsePDFToText };
+module.exports = { extractTextFromPDF };

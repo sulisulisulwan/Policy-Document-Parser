@@ -7,7 +7,7 @@ const errorResponseHandlers = async (error, res) => {
   let errorResponse = possibleErrorResponses[message];
   if (errorResponse === undefined) {
     errorResponse = (err, res) => res.sendStatus(500);
-  }
+  }s
   console.error(error)
   return errorResponse;
 }
