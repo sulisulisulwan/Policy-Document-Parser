@@ -5,6 +5,8 @@ const sendToDB = async (req, res) => {
 
   /*
   
+  NOTE: Consider splitting up all of these "controllers" into micro services.
+
   Expect a schema such as:
 
   Parsed Document:
